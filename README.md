@@ -36,12 +36,22 @@ Monitoring inbox:
     process = subprocess.Popen(command, stdout=subprocess.PIPE, text=True, bufsize=1)
 ```
 
-With single-cli, you will register a (mobile) number.
+If you are comfortable using the Subprocess package, then we are on our way...
 
+## Install 
+
+Install and register your Signal number (needs a phone number that can receive SMS or calls):
 ```bash
+brew install signal-cli
 signal-cli -u your_phone_number register
 signal-cli -u your_phone_number verify YOUR_VERIFICATION_CODE
 ```
+
+Link devices if you want to use it with an existing account instead of a new registration:
+```bash
+signal-cli link
+```
+
 
 ## Python Script to Send a Message
 
