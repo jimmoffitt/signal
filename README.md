@@ -216,9 +216,68 @@ from pysignalclilib import SignalCli
 USERNAME = "+1234567890"
 signal = SignalCli(username=USERNAME)
 
+
+## Melrose Labs, 3rd party library
+
+https://developers.melroselabs.com/reference/signal-getting-started
+https://developers.melroselabs.com/reference/post_message-3
+
+Using curl:
+
+```curl
+curl --request POST \
+     --url https://api.melroselabs.com/signal/message \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "systemid": "abcdefgh",
+  "password": "1234567890",
+  "destination": "447700123123",
+  "text": "Hello world!"
+}
+'
+```
+
+```python
+import requests
+
+url = "https://api.melroselabs.com/signal/message"
+
+payload = {
+    "systemid": "abcdefgh",
+    "password": "1234567890",
+    "destination": "447700123123",
+    "text": "Hello world!"
+}
+headers = {
+    "accept": "application/json",
+    "content-type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+```node
+const sdk = require('api')('@melrose-labs/v1.0#1ryfblhdkefup');
+
+sdk.postMessage({
+  systemid: 'abcdefgh',
+  password: '1234567890',
+  destination: '447700123123',
+  text: 'Hello world!'
+})
+  .then(({ data }) => console.log(data))
+  .catch(err => console.error(err));
+```
+
 # Read messages
 messages = signal.receive()
 for msg in messages:
     print(f"From: {msg['envelope']['source']}")
     print(f"Message: {msg['envelope']['dataMessage']['message']}")
 ```
+
+
