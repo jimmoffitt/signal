@@ -202,3 +202,23 @@ signal-cli also includes other commands for managing groups, such as:
 * signal-cli -u your_number updateGroup --name "New Name": To rename a group.
 * signal-cli -u your_number addMember --uri "signal-cli-uri-link": To add a new member.
 * signal-cli -u your_number leaveGroup: To leave a group.
+
+
+## The AI debate about real-time listening
+
+ChatGPT makes these claims:
+
+* Receiving messages in real-time requires running signal-cli in daemon mode or polling.
+
+```python
+from pysignalclilib import SignalCli
+
+USERNAME = "+1234567890"
+signal = SignalCli(username=USERNAME)
+
+# Read messages
+messages = signal.receive()
+for msg in messages:
+    print(f"From: {msg['envelope']['source']}")
+    print(f"Message: {msg['envelope']['dataMessage']['message']}")
+```
